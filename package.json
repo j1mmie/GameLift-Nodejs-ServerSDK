@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dplusic/GameLift-Nodejs-ServerSDK.git"
+    "url": "git+https://github.com/j1mmie/GameLift-Nodejs-ServerSDK.git"
   },
   "keywords": [
     "gamelift"
@@ -19,9 +19,9 @@
   "author": "Dongwoon Son",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/dplusic/GameLift-Nodejs-ServerSDK/issues"
+    "url": "https://github.com/j1mmie/GameLift-Nodejs-ServerSDK/issues"
   },
-  "homepage": "https://github.com/dplusic/GameLift-Nodejs-ServerSDK#readme",
+  "homepage": "https://github.com/j1mmie/GameLift-Nodejs-ServerSDK#readme",
   "prettier": {
     "semi": false,
     "singleQuote": true
