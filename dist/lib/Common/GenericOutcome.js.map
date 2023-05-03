@@ -1,0 +1,1 @@
+{"version":3,"file":"GenericOutcome.js","sourceRoot":"","sources":["../../../src/Common/GenericOutcome.ts"],"names":[],"mappings":";;AAEA;IAIE,wBAAY,KAAqB;QAC/B,IAAI,KAAK,KAAK,SAAS,EAAE;YACvB,IAAI,CAAC,OAAO,GAAG,IAAI,CAAA;SACpB;aAAM;YACL,IAAI,CAAC,KAAK,GAAG,KAAK,CAAA;YAClB,IAAI,CAAC,OAAO,GAAG,KAAK,CAAA;SACrB;IACH,CAAC;IACH,qBAAC;AAAD,CAAC,AAZD,IAYC;AAZY,wCAAc"}
