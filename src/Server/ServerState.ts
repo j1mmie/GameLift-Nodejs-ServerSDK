@@ -286,6 +286,24 @@ export class ServerState implements IAuxProxyMessageHandler {
     })()
   }
 
+  private _inferTerminationTime(): Long {
+    let defaultTerminationTime = Long.fromNumber(Date.now())
+    defaultTerminationTime = defaultTerminationTime.add(270 * 1000)
+    return defaultTerminationTime.mul(10000)
+  }
+
+  private _parseTerminationTime(inputTime:any): Long {
+    if (Long.isLong(inputTime)) {
+      return inputTime
+    } else if (typeof(inputTime) === 'string') {
+      return Long.fromString(inputTime)
+    } else if (typeof(inputTime) === 'number') {
+      return Long.fromNumber(inputTime)
+    } else {
+      return this._inferTerminationTime()
+    }
+  }
+
   public OnTerminateProcess(rawTerminationTime: string): void {
     ServerState.debug(
       `ServerState got the terminateProcess signal.  rawTerminationTime : ${rawTerminationTime}`
@@ -297,15 +315,13 @@ export class ServerState implements IAuxProxyMessageHandler {
 
       if (deserialized == null) {
         // If termination time isn't sent from AuxProxy use now plus 5 minutes.
-        let defaultTerminationTime = Long.fromNumber(Date.now())
-        defaultTerminationTime = defaultTerminationTime.add(270 * 1000)
-        this.terminationTime = defaultTerminationTime.mul(10000)
+        let defaultTerminationTime = this._inferTerminationTime()
       } else {
         /* TerminationTime coming from AuxProxy is seconds that have elapsed since Unix epoch time begins (00:00:00 UTC Jan 1 1970).
          * Since epoch time for dotNet starts at 0001-01-01T00:00:00 we need to create a DateTime at the beginning of Unix epoch time
          * and add the TerminationTime to that date.
          */
-        this.terminationTime = deserialized.terminationTime.mul(1000 * 10000)
+        this.terminationTime = this._parseTerminationTime(deserialized.terminationTime).mul(1000 * 10000)
       }
 
       this.processParameters!.OnProcessTerminate()
